@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
-import CreateContactItem from "../../components/CreateContactItem";
+import CreateContactItem from "../../components/CreateItem";
 import "./style.css"
 
 function CreateField ( ){
@@ -18,9 +18,6 @@ function CreateField ( ){
             <Button variant="contained" color="primary" >Сохранить</Button>
         </div>
         </div>
-
-
-
         </>
     );
 }

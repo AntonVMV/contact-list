@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import CreateContactItem from "../../components/CreateContactItem";
+import CreateContactItem from "../../components/CreateItem";
 import "./style.css"
 import { Button } from "@material-ui/core";
 

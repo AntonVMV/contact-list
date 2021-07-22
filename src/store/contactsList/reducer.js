@@ -1,7 +1,7 @@
 const initialState = [
     {
         firstName: 'Jonh',
-        secondName: 'Senna',
+        secondName: 'Cena',
         phone: '+12415125',
         email: 'Электронная почта'
     },
@@ -16,12 +16,6 @@ const initialState = [
         secondName: 'Musk',
         phone: '+845457458',
         email: 'em@gmail.com'
-    },
-    {
-        firstName: 'Jack',
-        secondName: 'Ripper',
-        phone: '+8455452357',
-        email: 'jr@gmail.com'
     },
 
 ]
