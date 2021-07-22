@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import './style.css'
+
 
 export default function({ title }) {
     return(

@@ -6,3 +6,21 @@
     margin: 10px;
     text-decoration: none;
 }
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid grey;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.controls{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
