@@ -14,18 +14,17 @@ const initialState = [
         displayName: 'Телефон',
         display: true,
     },
-    {
-        name: 'email',
-        displayName: 'Электронная почта',
-        display: false,
-    },
-    {
-        name: 'adress',
-        displayName: 'Адрес',
-        display: false,
-    }
 ]
 
 export default function filedListReducer(state = initialState, action){
-    return state
+    switch (action.type) {
+        case "CREATE_FIELD":
+          return [
+              ...state,
+              {...action.payload},
+          ];
+  
+        default:
+          return state;
+      }
 }

@@ -12,8 +12,8 @@ function FieldList ({ fields }){
         <>
         <Link to="/fields/add" className="add-link"><Button variant="contained" color="primary"><AddIcon />Новое поле</Button></Link>
         <div className="container">
-            {fields.map(item => (
-                <FieldItem title={item.displayName} />
+            {fields.map((item, index) => (
+                <FieldItem key={index} title={item.displayName} />
             ))}
         </div>
         </>
