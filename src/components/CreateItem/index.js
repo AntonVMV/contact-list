@@ -1,16 +1,15 @@
 import "./style.css";
 import { TextField } from "@material-ui/core";
-import { useState } from "react";
 
 
-export default function({ title, set, prev, keyVal}) {
+export default function({ title, set, prevValue, keyName, fieldValue }) {
     return(
         <>
-        <div className="new-contact">
-            <TextField id="standard-basic" label={title} className="textfield" onChange = {e => {
+        <div className="new-contact" >
+            <TextField id="standard-basic" value={fieldValue || ""} label={title} className="textfield" onChange = {e => {
                 set({
-                    ...prev,
-                    [keyVal]: e.target.value
+                    ...prevValue,
+                    [keyName]: e.target.value
                 }); 
             }}/>
         </div>

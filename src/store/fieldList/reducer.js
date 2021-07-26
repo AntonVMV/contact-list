@@ -23,7 +23,13 @@ export default function filedListReducer(state = initialState, action){
               ...state,
               {...action.payload},
           ];
-  
+        
+          
+        case "DELETE_FIELD":
+          return [
+            ...state.filter(item => item !== action.payload)
+        ];
+
         default:
           return state;
       }
