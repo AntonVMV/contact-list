@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 
 
 export default function({ title, click, deleteBtn }) {
-   
+   const id = 1;
     return(
         <div className="contact" >
             <span className="display-info" onClick={click}>

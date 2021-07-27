@@ -3,6 +3,7 @@ import { Button } from "@material-ui/core";
 import CreateContactItem from "../../components/CreateItem";
 import "./style.css";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 function CreateField ( props ){
     const [value, setValue] = useState('');
@@ -13,19 +14,19 @@ function CreateField ( props ){
         <div className="field-container">
             <div className="new-contact-container">
                 {titles.map((item, index) => (
-                    <CreateContactItem key={index} title={item.fieldName} keyName={item.key} set={setValue} prevValue={value} fieldValue={value[item.key]} />
+                    <CreateContactItem key={index} title={item.fieldName} keyName={item.key} set={setValue} prevValue={value} />
                 ))}
             </div>
             <span>Показывать на главном экране:</span>    
             <input type='checkbox' onChange = {e => setValue({...value, display: e.target.checked})}></input>
             <div className="save-btn">
-            <Button variant="contained" color="primary" onClick={() => {
+            <Link to="/fields" className="link"><Button variant="contained" color="primary" onClick={() => {
                 if(!value){
                     return;
                 }
                 props.onSave(value);
-                setValue('')
-            }}>Сохранить</Button>
+            }}>Сохранить</Button></Link>
+            
             </div>
         </div>
         </>

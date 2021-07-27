@@ -15,6 +15,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 function ContactList ({ list, fields, onDelete }){
     const [item, setItem] = useState({});
     const [openInfoModal, setInfoModal] = useState(false);
+    const [openDeleteModal, setDeleteModal] = useState(false);
 
     const handleClickOpenInfo = (value) => {
       setItem(value)
@@ -23,8 +24,6 @@ function ContactList ({ list, fields, onDelete }){
     const handleCloseInfo = () => {
       setInfoModal(false);
     };
-
-    const [openDeleteModal, setDeleteModal] = useState(false);
     const handleClickOpenDelete = (value) => {
       setItem(value);
       setDeleteModal(true);
