@@ -3,11 +3,30 @@ import { Button } from "@material-ui/core";
 import CreateContactItem from "../../components/CreateItem";
 import "./style.css";
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { FormControlLabel, Checkbox } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+
 
 function CreateField ( props ){
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(false);
+    const [state, setState] = useState({checkedA: false});
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked })
+        setValue({...value, display: event.target.checked});
+      };
+    const history = useHistory();
 
+    const handleClick = () => {history.push("/fields")}
+
+    function checkValue(){
+        for(let key in value){
+            if(!value[key]){
+                return false;
+            }
+            return true;
+        }
+    }
+      
     const titles = [{fieldName: 'Имя поля', key: 'displayName',}, {fieldName: 'Ключ поля', key: 'name', }]
     return (
         <>
@@ -17,15 +36,15 @@ function CreateField ( props ){
                     <CreateContactItem key={index} title={item.fieldName} keyName={item.key} set={setValue} prevValue={value} />
                 ))}
             </div>
-            <span>Показывать на главном экране:</span>    
-            <input type='checkbox' onChange = {e => setValue({...value, display: e.target.checked})}></input>
+            <FormControlLabel
+                control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+                label="Показывать на главном экране"
+            />
             <div className="save-btn">
-            <Link to="/fields" className="link"><Button variant="contained" color="primary" onClick={() => {
-                if(!value){
-                    return;
-                }
+            <Button variant="contained" color="primary" disabled={!checkValue()} onClick={() => {
                 props.onSave(value);
-            }}>Сохранить</Button></Link>
+                handleClick();
+                }}>Сохранить</Button>
             
             </div>
         </div>

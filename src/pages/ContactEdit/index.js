@@ -1,12 +1,10 @@
 import { connect } from "react-redux";
 import CreateContactItem from "../../components/CreateItem";
-import "./style.css"
 import { Button } from "@material-ui/core";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-
-function CreateContact (props){
+function ContactEdit (props) {
     const history = useHistory();
 
     const handleClick = () => {history.push("/contacts")};
@@ -40,6 +38,7 @@ function CreateContact (props){
          </>
     );
 }
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onSave: (value) => {
@@ -54,4 +53,4 @@ const mapStateToProps = state => ({
     fields: state.fieldList,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateContact)
+export default connect(mapStateToProps, mapDispatchToProps)(ContactEdit)

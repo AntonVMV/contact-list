@@ -10,6 +10,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from "react-router-dom";
 
 
 function ContactList ({ list, fields, onDelete }){
@@ -24,6 +25,8 @@ function ContactList ({ list, fields, onDelete }){
     const handleCloseInfo = () => {
       setInfoModal(false);
     };
+
+
     const handleClickOpenDelete = (value) => {
       setItem(value);
       setDeleteModal(true);
@@ -37,6 +40,10 @@ function ContactList ({ list, fields, onDelete }){
       
     }
 
+    const history = useHistory();
+
+    const handleClick = (index) => {history.push(`/contacts/edit/${index}`)};
+
     const keys = fields.filter(field => field.display).map(field => field.name);
     const titles = list
         .map(contact => keys.map(key => contact[key]).join(' '));
@@ -46,7 +53,7 @@ function ContactList ({ list, fields, onDelete }){
         <Link to="/contacts/add" className="add-link"><Button variant="contained" color="primary"><AddIcon />Новый контакт</Button></Link>
         <div className="container" >
             {titles.map((title, index) => (
-                <ContactItem key={index} title={title} click={() => handleClickOpenInfo(list[index])} deleteBtn={() => handleClickOpenDelete(list[index])}/>
+                <ContactItem key={index} title={title} click={() => handleClickOpenInfo(list[index])} editBtn={() => {handleClick(index)}} deleteBtn={() => { handleClickOpenDelete(list[index]) } }/>
             ))}
         </div>
         
@@ -58,11 +65,11 @@ function ContactList ({ list, fields, onDelete }){
       >
         <DialogTitle id="alert-dialog-title">{"ИНФО:"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {fields.map(field => (
-                <div>
-                    {field.displayName}: {item[field.name]}
-                </div>
+          <DialogContentText id="alert-dialog-description">        
+            {fields.filter(field => item[field.name]).map(field => (
+              <div>
+              {field.displayName}: {item[field.name]}
+            </div>  
             ))}
           </DialogContentText>
         </DialogContent>
