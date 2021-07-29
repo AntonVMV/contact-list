@@ -1,31 +1,26 @@
-const initialState = [
-    {
-        name: 'firstName',
-        displayName: 'Имя',
-        display: true,
-    },
-    {
-        name: 'secondName',
-        displayName: 'Фамилия',
-        display: true,
-    },
-    {
-        name: 'phone',
-        displayName: 'Телефон',
-        display: true,
-    },
-]
+import * as actionTypes from "../actionTypes"
+
+const initialState = [];
 
 export default function filedListReducer(state = initialState, action){
     switch (action.type) {
-        case "CREATE_FIELD":
+        case actionTypes.CREATE_FIELD:
           return [
               ...state,
               {...action.payload},
           ];
         
+        case actionTypes.UPDATE_FIELD:
+          return [
+            ...state.map((item, index) => {
+              if(index === parseInt(action.payload.id)){
+                return action.payload.value
+              }
+              return item;
+            })    
+          ];
           
-        case "DELETE_FIELD":
+        case actionTypes.DELETE_FIELD:
           return [
             ...state.filter(item => item !== action.payload)
         ];

@@ -7,8 +7,8 @@ import { Button } from "@material-ui/core";
 export default function({ title, click, deleteBtn, editBtn }) {
    const id = 1;
     return(
-        <div className="contact" onClick={click}>
-            <span className="display-info" >
+        <div className="contact" >
+            <span className="display-info" onClick={click}>
                 {title}
             </span>
             <div className="controls">

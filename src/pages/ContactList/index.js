@@ -11,6 +11,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useHistory } from "react-router-dom";
+import * as actions from "../../store/action";
 
 
 function ContactList ({ list, fields, onDelete }){
@@ -115,12 +116,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDelete: (value) => {
-            dispatch({
-                type: "DELETE_CONTACT",
-                payload: value
-            })
-        }
+        onDelete: (value) => dispatch(actions.itemDelete(value))
     }
 }
 

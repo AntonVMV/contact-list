@@ -4,7 +4,7 @@ import "./style.css"
 import { Button } from "@material-ui/core";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+import * as actions from "../../store/action";
 
 function CreateContact (props){
     const history = useHistory();
@@ -42,16 +42,11 @@ function CreateContact (props){
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSave: (value) => {
-            dispatch({
-                type: "CREATE_CONTACT",
-                payload: value,
-            })
-        }
+        onSave: (value) => dispatch(actions.itemCreate(value))
     }
 }
 const mapStateToProps = state => ({
     fields: state.fieldList,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateContact)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateContact);

@@ -6,7 +6,7 @@ import CreateContact from './pages/CreateContact';
 import CreateField from './pages/CreateField';
 import { Button } from '@material-ui/core';
 import ContactEdit from './pages/ContactEdit';
-
+import FieldEdit from './pages/FieldEdit';
 
 
 
@@ -31,8 +31,11 @@ export function App() {
       <Route path="/fields/add" exact>
         <CreateField />
       </Route>
-      <Route path="/contacts/edit/:index" exact>
+      <Route path="/contacts/edit/:id" exact>
         <ContactEdit />
+      </Route>
+      <Route path="/fields/edit/:id" exact>
+        <FieldEdit />
       </Route>
       <Route path="/" exact>
         <Redirect to="/contacts"/>

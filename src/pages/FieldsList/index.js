@@ -10,6 +10,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from "react-router-dom";
+import * as actions from "../../store/action";
 
 function FieldList ({ fields, onDelete }){
     const [item, setItem] = useState({});
@@ -27,12 +29,16 @@ function FieldList ({ fields, onDelete }){
       
     }
 
+    const history = useHistory();
+
+    const handleClick = (index) => {history.push(`/fields/edit/${index}`)};
+
     return (
         <>
         <Link to="/fields/add" className="add-link"><Button variant="contained" color="primary"><AddIcon />Новое поле</Button></Link>
         <div className="container">
             {fields.map((item, index) => (
-                <FieldItem key={index} title={item.displayName} deleteBtn={() => handleClickOpenDelete(fields[index])}/>
+                <FieldItem key={index} title={item.displayName} editBtn={() => {handleClick(index)}} deleteBtn={() => handleClickOpenDelete(fields[index])}/>
             ))}
         </div>
 
@@ -68,12 +74,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDelete: (value) => {
-            dispatch({
-                type: "DELETE_FIELD",
-                payload: value
-            })
-        }
+        onDelete: (value) => dispatch(actions.fieldDelete(value))
     }
 }
 

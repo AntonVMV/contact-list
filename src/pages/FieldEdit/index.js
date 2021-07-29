@@ -1,15 +1,19 @@
 import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
-import CreateContactItem from "../../components/CreateItem";
-import "./style.css";
+import CreateItem from "../../components/CreateItem";
 import { useState } from "react";
 import { FormControlLabel, Checkbox } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as actions from "../../store/action";
 
+
 function CreateField ( props ){
-    const [value, setValue] = useState();
+    
+    const params = useParams();
+    const [value, setValue] = useState(props.fields[params.id]);
     const [state, setState] = useState({checkedA: false});
+    console.log(props.fields[params.id])
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked })
         setValue({...value, display: event.target.checked});
@@ -33,16 +37,16 @@ function CreateField ( props ){
         <div className="field-container">
             <div className="new-contact-container">
                 {titles.map((item, index) => (
-                    <CreateContactItem key={index} title={item.fieldName} keyName={item.key} set={setValue} prevValue={value} />
+                    <CreateItem key={index} title={item.fieldName} inputValue={value[item.key]} keyName={item.key} set={setValue} prevValue={value} />
                 ))}
             </div>
             <FormControlLabel
-                control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+                control={<Checkbox checked={value.display} onChange={handleChange} name="checkedA" />}
                 label="Показывать на главном экране"
             />
             <div className="save-btn">
             <Button variant="contained" color="primary" disabled={!checkValue()} onClick={() => {
-                props.onSave(value);
+                props.onUpdate(value, params.id);
                 handleClick();
                 }}>Сохранить</Button>
             
@@ -58,7 +62,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSave: (value) => dispatch(actions.fieldCreate(value))
+        onUpdate: (value, id) => dispatch(actions.fieldUpdate(value, id))
     }
 }
 
