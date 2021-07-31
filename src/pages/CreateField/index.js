@@ -19,6 +19,7 @@ function CreateField ( props ){
     const handleClick = () => {history.push("/fields")}
 
     function checkValue(){
+        console.log(value)
         for(let key in value){
             if(!value[key]){
                 return false;
@@ -37,7 +38,7 @@ function CreateField ( props ){
                 ))}
             </div>
             <FormControlLabel
-                control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+                control={<Checkbox checked={state.checkedA} onChange={handleChange} disabled={!checkValue()} name="checkedA" />}
                 label="Показывать на главном экране"
             />
             <div className="save-btn">
