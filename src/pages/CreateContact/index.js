@@ -4,7 +4,7 @@ import "./style.css"
 import { Button } from "@material-ui/core";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import * as actions from "../../store/action";
+import * as actions from "../../store/contactsList/actions";
 
 function CreateContact (props){
     const history = useHistory();
